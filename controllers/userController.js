@@ -1,9 +1,15 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 // Models Location
 const { userModel } = require("../models/userModel");
 
 
 const registerController = async (req,res) => {
     const{ email,password } = req.body;
+
+    if(email=="" || password=="") return res.status(501).json("Enter all fields");
+
     try {
         const isPresent = await userModel.findOne({email});
         if(isPresent) return res.status(200).send({
@@ -37,6 +43,9 @@ const registerController = async (req,res) => {
 
 const loginController = async (req,res) => {
     const { email, password } = req.body;
+
+    if(email=="" || password=="") return res.status(501).json("Enter all fields");
+
     try {
         const isPresent = await userModel.findOne({email: email});
         if(!isPresent) return res.status(401).send({

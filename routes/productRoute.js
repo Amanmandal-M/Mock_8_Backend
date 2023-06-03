@@ -21,13 +21,13 @@ productRouter.get('/products', getAllProductsController);
 productRouter.get('/products/:id', getSingleProductsController);
 
 // This endpoint is for view searched products.
-productRouter.get('/products', searchProductController);
+productRouter.get('/productSearch', searchProductController);
 
 // This endpoint is for view sort by date.
-productRouter.get('/products', sortByDateProductController);
+productRouter.get('/productSort', sortByDateProductController);
 
 // This endpoint is for view filter by category.
-productRouter.get('/products', filteredProductController);
+productRouter.get('/productFilter', filteredProductController);
 
 // This endpoint is for add a new product.
 productRouter.post('/products', addProductController);

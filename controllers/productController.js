@@ -4,8 +4,9 @@ const { productModel } = require("../models/productModel");
 
 // This endpoint is for view all products
 const getAllProductsController = async (req,res) => {
+    const limit = req.query.limit
     try {
-        const allProducts = await productModel.find();
+        const allProducts = await productModel.find().limit(limit);
         return res.status(200).json(allProducts);
     } catch (error) {
         console.log(error.message);
@@ -33,8 +34,8 @@ const getSingleProductsController = async (req,res) => {
 const searchProductController = async (req,res) => {
     const searchedProduct = req.query.search
     try {
-        const data = await movieModel.find({name: {$regex:`(?i)${searchedProduct}`}})
-        return res.staus(200).json(data)
+        const data = await productModel.find({name: {$regex:`(?i)${searchedProduct}`}})
+        return res.status(200).json(data)
     } catch (error) {
         console.log(error.message);
         res.status(500).send({
@@ -48,13 +49,13 @@ const sortByDateProductController = async (req,res) => {
     const status = req.query.sort;
     try {
 
-        if(status == asc) {
+        if(status == "asc") {
             const data = await productModel.find().sort({
                 postedAt: 1
             });
             return res.status(200).json(data);
         }else{ 
-            if(status == desc) {
+            if(status == "desc") {
                 const data = await productModel.find().sort({
                     postedAt: -1
                 });
@@ -88,6 +89,16 @@ const filteredProductController = async (req,res) => {
 const addProductController = async (req,res) => {
     const payload = req.body;
     try {
+
+        if(
+            payload.name=="" ||
+            payload.description=="" ||
+            payload.category=="" ||
+            payload.location=="" ||
+            payload.postedAt=="" ||
+            payload.price=="" 
+            ) return res.status(501).json("Enter all fields")
+
         const data = new productModel (payload);
         await data.save();
 

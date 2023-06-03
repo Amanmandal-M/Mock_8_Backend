@@ -115,7 +115,7 @@ Note:
         </tr>
         <tr>
             <td>GET</td>
-            <td>/api/products</td>
+            <td>/api/products?limit=`page limit`</td>
             <td>This endpoint is for view all products.</td>
             <td>200</td>
         </tr>
@@ -127,19 +127,19 @@ Note:
         </tr>
         <tr>
             <td>GET</td>
-            <td>/api/products?search=`your data`</td>
+            <td>/api/productSearch?search=`your data`</td>
             <td>This endpoint is for view searched products.</td>
             <td>200</td>
         </tr>
         <tr>
             <td>GET</td>
-            <td>/api/products?sort=`asc/desc`</td>
+            <td>/api/productSort?sort=`asc/desc`</td>
             <td>This endpoint is for view sort by date.</td>
             <td>200</td>
         </tr>
         <tr>
             <td>GET</td>
-            <td>/api/products?category=`category name`</td>
+            <td>/api/productFilter?category=`category name`</td>
             <td>This endpoint is for view filter by category.</td>
             <td>200</td>
         </tr>
