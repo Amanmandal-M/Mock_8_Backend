@@ -61,8 +61,6 @@ const loginController = async (req,res) => {
                 
             const Normal_Token = jwt.sign({"masai":"masai"}, process.env.NORMAL_KEY,{expiresIn:"7d"});
                     
-            res.cookie("Normal_Token", Normal_Token ,{ httpOnly: true });
-    
             res.status(201).send({
                 "Message":"Login successful",
                 "Token": Normal_Token,
