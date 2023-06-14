@@ -14,6 +14,7 @@ const {
     } = require('../controllers/productController');
 
 
+
 // This endpoint is for view all products.
 productRouter.get('/products', getAllProductsController);
 

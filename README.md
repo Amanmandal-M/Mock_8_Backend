@@ -1,4 +1,4 @@
-# Food Delivey App Backend System
+# Olx Delivey App Backend System
 
 ## About
 
@@ -163,6 +163,3 @@ Note:
         </tr>
     </tbody>
 </table>
-
-
-

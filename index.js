@@ -2,6 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const app = express();
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
 require('dotenv').config();
 
 
@@ -20,6 +22,30 @@ const { productRouter } = require('./routes/productRoute');
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+
+
+// --------------->>>>>>>> Swagger <<<<<<<<-------------------
+const options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "Food Delivey App Backend System",
+			version: "1.0.0",
+			description: "A simple Express Library API of Food Delivey",
+		},
+		servers: [
+			{
+				url: "http://localhost:8080",
+			},
+		],
+	},
+	apis: ["./swaggerDocs/*.js"],
+};
+
+const specs = swaggerJsDoc(options);
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+
 
 // Default Routes
 app.get('/', (req,res)=>{
