@@ -1,6 +1,8 @@
-// ----------------------------->>>>>>> Schema <<<<<<<-----------------------------
-// ------->>> Users Schema <<<-------
+// ----------------------------->>>>>>> Schemas <<<<<<<-----------------------------
 
+
+
+// --------------------->>> Authorization Schema<<<---------------------
 /**
  * @swagger
  * components:
@@ -10,7 +12,11 @@
  *       in: header
  *       name: Authorization
  *       description: Bearer token authorization header
- */
+*/
+
+
+
+// --------------------->>> Users Schema <<<---------------------
 
 /**
  * @swagger
@@ -37,8 +43,9 @@
  *         password: aman123
  */
 
-// ------->>> Products Schema <<<-------
 
+
+// --------------------->>> Products Schema <<<---------------------
 /**
  * @swagger
  * components:
@@ -85,10 +92,12 @@
 
 
 
+
 // ----------------------------->>>>>>> Routes <<<<<<<-----------------------------
 
 // ------->>> Users Routes <<<-------
 
+// Tags
 /**
  * @swagger
  * tags:
@@ -96,6 +105,7 @@
  *   description: The User APIs
  */
 
+// Signup
 /**
  * @swagger
  * /signup:
@@ -121,6 +131,7 @@
  *         description: User already exists
  */
 
+// Login
 /**
  * @swagger
  * /login:
@@ -149,15 +160,18 @@
  */
 
 
-// ------->>> Product Routes <<<-------
 
+// ------------------------>>> Product Routes <<<------------------------
+
+// Tags
 /**
  * @swagger
  * tags:
  *   name: Products
  *   description: The User APIs
- */
- 
+*/
+
+// GET all products
 /**
  * @swagger
  * /products:
@@ -177,4 +191,197 @@
  *                 $ref: '#/components/schemas/Products'
  *       500:
  *         description: Internal Server Error
+ */
+
+// GET single product by Id
+/**
+ * @swagger
+ * /products/{id}:
+ *  get:
+ *    summary: Get a single product by Id
+ *    tags: [Products]
+ *    security:
+ *       - BearerAuth: []
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Product Id to retrieve
+ *    responses:
+ *      200:
+ *        description: Single product Found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Products'
+ *      500:
+ *        description: Internal Server Error
+ */
+
+// GET Searched product
+/**
+ * @swagger
+ * /productSearch:
+ *   get:
+ *     summary: Returns the list of all the search products.
+ *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Search query by name
+ *     responses:
+ *       200:
+ *         description: Return all searched products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Products'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+// GET Sorted product
+/**
+ * @swagger
+ * /productSort:
+ *   get:
+ *     summary: Returns the list of all the sorted products.
+ *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *         description: Search query "asc/desc" by price
+ *     responses:
+ *       200:
+ *         description: Return all sorted products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Products'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+// GET Fitered product
+/**
+ * @swagger
+ * /productFilter:
+ *   get:
+ *     summary: Returns the list of all the filtered products.
+ *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: category
+ *         schema:
+ *           type: string
+ *         description: Search query by category
+ *     responses:
+ *       200:
+ *         description: Return all filtered products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Products'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+// POST a product
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     summary: Add a new product
+ *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Products'
+ *     responses:
+ *       201:
+ *         description: Product added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Products'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+// PATCH single product by Id
+/**
+ * @swagger
+ * /products/{id}:
+ *  patch:
+ *    summary: Update a single product by Id
+ *    tags: [Products]
+ *    security:
+ *       - BearerAuth: []
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Product Id to retrieve
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Products'
+ *    responses:
+ *      200:
+ *        description: Product Updated Successfully
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Products'
+ *      500:
+ *        description: Internal Server Error
+ */
+
+// DELETE single product by Id
+/**
+ * @swagger
+ * /products/{id}:
+ *  delete:
+ *    summary: Delete a single product by Id
+ *    tags: [Products]
+ *    security:
+ *       - BearerAuth: []
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Product Id to retrieve
+ *    responses:
+ *      200:
+ *        description: Deleted Product Successfully
+ *      500:
+ *        description: Internal Server Error
  */
