@@ -29,13 +29,13 @@ const options = {
 	definition: {
 		openapi: "3.0.0",
 		info: {
-			title: "Food Delivey App Backend System",
+			title: "Olx Delivey App Backend System",
 			version: "1.0.0",
 			description: "A simple Express Library API of Food Delivey",
 		},
 		servers: [
 			{
-				url: "http://localhost:8080",
+				url: "http://localhost:8080/api",
 			},
 		],
 	},
