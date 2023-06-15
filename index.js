@@ -31,7 +31,7 @@ const options = {
 		info: {
 			title: "Olx Delivey App Backend System",
 			version: "1.0.0",
-			description: "A simple Express Library API of Food Delivey",
+			description: "This is Olx Delivey App so user can register with valid credentials and login with valid credentials and after authentication user can see products and add products ,  if user wants to view the single product items etc. they can also view and if user wants to edit anything so they can also do this.",
 		},
 		servers: [
 			{
