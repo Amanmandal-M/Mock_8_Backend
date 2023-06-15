@@ -62,8 +62,6 @@ Note:
 
 ## Swagger API documentation
 
-<br>
-
 <strong>
 <h2>
 <a href="https://olx-classifieds-backend-app.onrender.com/api-docs/" target="_blank">Swagger</a>
