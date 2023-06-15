@@ -102,7 +102,7 @@
  * @swagger
  * tags:
  *   name: Users
- *   description: The User APIs
+ *   description: User API Endpoints
  */
 
 // Signup
@@ -168,7 +168,7 @@
  * @swagger
  * tags:
  *   name: Products
- *   description: The User APIs
+ *   description: Product API Endpoints
 */
 
 // GET all products
